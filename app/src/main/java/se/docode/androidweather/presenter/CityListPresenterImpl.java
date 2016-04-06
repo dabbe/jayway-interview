@@ -1,17 +1,18 @@
 package se.docode.androidweather.presenter;
 
 import se.docode.androidweather.model.SearchResult;
+import se.docode.androidweather.model.WeatherData;
 import se.docode.androidweather.network.OnSearchResultFetchedCallback;
-import se.docode.androidweather.view.MvpView;
+import se.docode.androidweather.view.CityListView;
 
 /**
  * Created by Daniel on 2016-04-06.
  */
-public class PresenterImpl implements Presenter {
+public class CityListPresenterImpl implements CityListPresenter {
     private final NetworkHandler mNetworkHandler;
-    private MvpView mView;
+    private CityListView mView;
 
-    public PresenterImpl(MvpView view) {
+    public CityListPresenterImpl(CityListView view) {
         mView = view;
         mNetworkHandler = new NetworkHandler();
     }
@@ -25,4 +26,5 @@ public class PresenterImpl implements Presenter {
             }
         });
     }
+
 }

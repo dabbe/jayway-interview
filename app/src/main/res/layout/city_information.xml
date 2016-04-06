@@ -2,25 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:layout_margin="4dp"
               android:gravity="center"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:padding="4dp">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:gravity="center"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
+        android:gravity="center" android:textColor="#fff"
         android:text="Malmö"
-        android:textSize="24sp"/>
+        android:textSize="24sp"
+        android:transitionName="@string/textview_transition"/>
 
 
     <ImageView
+        android:id="@+id/weather_image"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_margin="12dp"
-        android:background="@drawable/sun"/>
+        android:background="@drawable/sun"
+        android:transitionName="@string/imageview_transition"/>
 
-    <TextView
+    <TextView  android:textColor="#fff"
         android:id="@+id/temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

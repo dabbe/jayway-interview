@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.CityActivity"
+    tools:showIn="@layout/activity_city">
+
+    <include layout="@layout/top_layout"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent">
+
+        <TextView android:id="@+id/city_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:fontFamily="sans-serif-light"
+            android:gravity="right"
+            android:padding="4dp"
+            android:text="Malmö"
+            android:textColor="#fff"
+            android:textSize="38sp"
+            android:transitionName="@string/textview_transition"/>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/sun"
+        android:transitionName="@string/imageview_transition"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tjabba världen"/>
+</LinearLayout>
