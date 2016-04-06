@@ -65,7 +65,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_centerVertical="true" android:id="@+id/search_input"
             android:layout_toLeftOf="@id/search_button"
             android:hint="Search for a city…"
             android:singleLine="true"/>
