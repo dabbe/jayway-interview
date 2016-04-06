@@ -8,6 +8,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import se.docode.androidweather.model.SearchResult;
+import se.docode.androidweather.network.OnSearchResultFetchedCallback;
 import se.docode.androidweather.network.WeatherApi;
 
 /**
@@ -25,12 +26,12 @@ public class NetworkHandler {
         mApi = retrofit.create(WeatherApi.class);
     }
 
-    public void search(String query) {
+    public void search(String query, final OnSearchResultFetchedCallback callback) {
         Call<SearchResult> call = mApi.searchByFreeText(query);
         call.enqueue(new Callback<SearchResult>() {
             @Override
             public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
-                Log.d("response", "response");
+                callback.onSearchResultFetched(response.body());
             }
 
             @Override

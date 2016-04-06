@@ -1,5 +1,7 @@
 package se.docode.androidweather.presenter;
 
+import se.docode.androidweather.model.SearchResult;
+import se.docode.androidweather.network.OnSearchResultFetchedCallback;
 import se.docode.androidweather.view.MvpView;
 
 /**
@@ -16,6 +18,11 @@ public class PresenterImpl implements Presenter {
 
     @Override
     public void search(String query) {
-        mNetworkHandler.search(query);
+        mNetworkHandler.search(query, new OnSearchResultFetchedCallback() {
+            @Override
+            public void onSearchResultFetched(SearchResult searchResult) {
+                mView.showSearchResult(searchResult);
+            }
+        });
     }
 }
