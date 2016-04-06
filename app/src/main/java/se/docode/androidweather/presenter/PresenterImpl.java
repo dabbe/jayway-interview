@@ -21,7 +21,7 @@ public class PresenterImpl implements Presenter {
         mNetworkHandler.search(query, new OnSearchResultFetchedCallback() {
             @Override
             public void onSearchResultFetched(SearchResult searchResult) {
-                mView.showSearchResult(searchResult);
+                mView.showSearchResult(searchResult.getWeatherData());
             }
         });
     }

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Weathr</string>
+    <string name="no_results_for">No results for %s. :(</string>
+    <string name="degrees_celsius">%.1f °C</string>
+    <string name="degrees_fahrenheit">%.1f °F</string>
 </resources>
