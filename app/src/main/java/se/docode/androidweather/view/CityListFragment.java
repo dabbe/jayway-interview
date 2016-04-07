@@ -155,7 +155,7 @@ public class CityListFragment extends Fragment implements CityListView {
     @Override
     public void showSearchResult(List<WeatherData> weatherData) {
         mAdapter.replaceSearchResult(weatherData);
-        if (weatherData.isEmpty()) {
+        if (weatherData == null || weatherData.isEmpty()) {
             mEmptyView.setText(getString(R.string.no_results_for, mSearchInput.getText().toString()));
             mViewFlipper.setDisplayedChild(VIEWFLIPPER_EMPTY);
         } else {

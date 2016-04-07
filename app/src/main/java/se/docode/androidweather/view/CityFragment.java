@@ -17,8 +17,10 @@ public class CityFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        ((TextView) view.findViewById(R.id.city_name)).setText(getActivity().getIntent().getStringExtra(getString(R.string.city_name)));
-        super.onViewCreated(view, savedInstanceState);
+        String cityName = getActivity().getIntent().getStringExtra(getString(R.string.city_name));
+        TextView city = ((TextView) view.findViewById(R.id.city_name));
+        city.setText(getString(R.string.in_city, cityName));
+
     }
 
     @Nullable

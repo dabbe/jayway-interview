@@ -12,7 +12,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="4dp">
 
         <Button
             android:id="@+id/search_button"
@@ -45,7 +46,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="search for smth"/>
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:padding="24dp"
+            android:text="Search for a city in the box above!"
+            android:textSize="26sp"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -59,7 +65,11 @@
             android:id="@+id/emptyview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="no result for"/>
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="Search for a city in the box above!"
+            android:textSize="26sp"/>
 
         <ProgressBar
             style="?android:attr/progressBarStyle"

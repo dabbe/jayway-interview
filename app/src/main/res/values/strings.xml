@@ -6,4 +6,5 @@
     <string name="imageview_transition">img_transition</string>
     <string name="textview_transition">text_transition</string>
     <string name="city_name">city_name</string>
+    <string name="in_city">in %s</string>
 </resources>
