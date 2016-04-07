@@ -23,8 +23,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_margin="12dp"
-        android:background="@drawable/sun"
-        android:transitionName="@string/imageview_transition"/>
+        android:background="@drawable/ic_sun"/>
 
     <TextView  android:textColor="#fff"
         android:id="@+id/temperature"

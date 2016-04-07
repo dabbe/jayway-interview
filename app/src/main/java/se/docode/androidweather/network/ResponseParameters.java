@@ -12,4 +12,5 @@ public class ResponseParameters {
     public static final String MAXIMUM_TEMPERATURE = "temp_max";
     public static final String MINIMUM_TEMPERATURE = "temp_min";
     public static final String TEMPERATURE = "main";
+    public static final String CITY_ID = "id";
 }

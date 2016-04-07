@@ -8,6 +8,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import se.docode.androidweather.model.SearchResult;
+import se.docode.androidweather.model.WeatherForecast;
+import se.docode.androidweather.network.OnForecastFetchedCallback;
 import se.docode.androidweather.network.OnSearchResultFetchedCallback;
 import se.docode.androidweather.network.WeatherApi;
 
@@ -26,7 +28,7 @@ public class NetworkHandler {
         mApi = retrofit.create(WeatherApi.class);
     }
 
-    public void search(String query, final OnSearchResultFetchedCallback callback) {
+    public void searchByFreeText(String query, final OnSearchResultFetchedCallback callback) {
         Call<SearchResult> call = mApi.searchByFreeText(query);
         call.enqueue(new Callback<SearchResult>() {
             @Override
@@ -39,6 +41,22 @@ public class NetworkHandler {
                 Log.d("response", "No response");
             }
         });
+    }
+
+    public void searchById(int id, final OnForecastFetchedCallback callback) {
+        Call<WeatherForecast> call = mApi.searchById(id);
+        call.enqueue(new Callback<WeatherForecast>() {
+            @Override
+            public void onResponse(Call<WeatherForecast> call, Response<WeatherForecast> response) {
+                callback.onForecastFetched(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<WeatherForecast> call, Throwable t) {
+                Log.d("response", "No response");
+            }
+        });
+
     }
 
 }

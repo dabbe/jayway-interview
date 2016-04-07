@@ -1,7 +1,6 @@
 package se.docode.androidweather.presenter;
 
 import se.docode.androidweather.model.SearchResult;
-import se.docode.androidweather.model.WeatherData;
 import se.docode.androidweather.network.OnSearchResultFetchedCallback;
 import se.docode.androidweather.view.CityListView;
 
@@ -19,7 +18,7 @@ public class CityListPresenterImpl implements CityListPresenter {
 
     @Override
     public void search(String query) {
-        mNetworkHandler.search(query, new OnSearchResultFetchedCallback() {
+        mNetworkHandler.searchByFreeText(query, new OnSearchResultFetchedCallback() {
             @Override
             public void onSearchResultFetched(SearchResult searchResult) {
                 mView.showSearchResult(searchResult.getWeatherData());

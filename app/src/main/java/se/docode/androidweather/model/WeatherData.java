@@ -15,11 +15,18 @@ public class WeatherData {
     @SerializedName(ResponseParameters.TEMPERATURE)
     private Temperature mTemperature;
 
+    @SerializedName(ResponseParameters.CITY_ID)
+    private int mId;
+
     public Temperature getTemperature() {
         return mTemperature;
     }
 
     public String getName() {
         return mName;
+    }
+
+    public int getId() {
+        return mId;
     }
 }

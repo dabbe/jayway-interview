@@ -118,10 +118,10 @@ public class CityListFragment extends Fragment implements CityListView {
             public void onCityClicked(WeatherData weatherData, ImageView imageView, TextView textView) {
                 Intent intent = new Intent(getActivity(), CityActivity.class);
                 intent.putExtra(getString(R.string.city_name), textView.getText().toString());
+                intent.putExtra(getString(R.string.city_id), weatherData.getId());
 
-                Pair<View, String> p1 = Pair.create((View) imageView, getString(R.string.imageview_transition));
-                Pair<View, String> p2 = Pair.create((View) textView, getString(R.string.textview_transition));
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), p1, p2);
+                Pair<View, String> p1 = Pair.create((View) textView, getString(R.string.textview_transition));
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), p1);
                 getActivity().startActivity(intent, options.toBundle());
 
             }
