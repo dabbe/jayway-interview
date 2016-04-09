@@ -2,19 +2,17 @@ package se.docode.androidweather.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import se.docode.androidweather.network.ResponseParameters;
-
 /**
  * Created by Daniel on 2016-04-06.
  */
-public class Temperature {
-    @SerializedName(ResponseParameters.AVERAGE_TEMPERATURE)
+public class WeatherDataTemperature {
+    @SerializedName("temp")
     private double mAverageTemperature;
 
-    @SerializedName(ResponseParameters.MINIMUM_TEMPERATURE)
+    @SerializedName("temp_min")
     private double mMinimumTemperature;
 
-    @SerializedName(ResponseParameters.MAXIMUM_TEMPERATURE)
+    @SerializedName("temp_max")
     private double mMaximumTemperature;
 
     public double getAverageTemperature() {

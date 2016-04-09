@@ -12,8 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
-        android:gravity="center" android:textColor="#fff"
+        android:gravity="center"
         android:text="Malmö"
+        android:textColor="#fff"
         android:textSize="24sp"
         android:transitionName="@string/textview_transition"/>
 
@@ -25,11 +26,12 @@
         android:layout_margin="12dp"
         android:background="@drawable/ic_sun"/>
 
-    <TextView  android:textColor="#fff"
+    <TextView
         android:id="@+id/temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-thin"
+        android:textColor="#fff"
         android:textSize="28sp"/>
 
 </LinearLayout>

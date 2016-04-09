@@ -2,23 +2,21 @@ package se.docode.androidweather.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import se.docode.androidweather.network.ResponseParameters;
-
 /**
  * Created by Daniel on 2016-04-06.
  */
 public class WeatherData {
 
-    @SerializedName(ResponseParameters.CITY_NAME)
+    @SerializedName("name")
     private String mName;
 
-    @SerializedName(ResponseParameters.TEMPERATURE)
-    private Temperature mTemperature;
+    @SerializedName("main")
+    private WeatherDataTemperature mTemperature;
 
-    @SerializedName(ResponseParameters.CITY_ID)
+    @SerializedName("id")
     private int mId;
 
-    public Temperature getTemperature() {
+    public WeatherDataTemperature getTemperature() {
         return mTemperature;
     }
 
