@@ -31,8 +31,8 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:textColor="#fff"
-            android:textOff="C°"
-            android:textOn="C°"/>
+            android:textOff="°C"
+            android:textOn="°C"/>
 
         <ToggleButton
             android:id="@+id/fahrenheit"
@@ -42,8 +42,8 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:textColor="#fff"
-            android:textOff="F°"
-            android:textOn="F°"/>
+            android:textOff="°F"
+            android:textOn="°F"/>
 
     </LinearLayout>
 </FrameLayout>

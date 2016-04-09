@@ -14,7 +14,7 @@ public class CelsiusConverter extends TemperatureConverter {
     }
 
     @Override
-    public double convert(double kelvin) {
+    public double convertValue(double kelvin) {
         return kelvin - 273.15f;
     }
 

@@ -23,8 +23,7 @@
         android:id="@+id/weather_image"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_margin="12dp"
-        android:background="@drawable/ic_sun"/>
+        android:layout_margin="12dp"/>
 
     <TextView
         android:id="@+id/temperature"
@@ -32,6 +31,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-thin"
         android:textColor="#fff"
-        android:textSize="28sp"/>
+        android:textSize="28sp"
+        android:transitionName="@string/degrees_transition"/>
 
 </LinearLayout>

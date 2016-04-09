@@ -1,4 +1,4 @@
-package se.docode.androidweather;
+package se.docode.androidweather.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.docode.androidweather.R;
 import se.docode.androidweather.core.CelsiusConverter;
 import se.docode.androidweather.core.TemperatureConverter;
 import se.docode.androidweather.core.WeatherColorer;
@@ -46,21 +47,21 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        WeatherData weatherdata = mWeatherData.get(position);
+        final WeatherData weatherdata = mWeatherData.get(position);
 
         int color = WeatherColorer.getColor(weatherdata.getTemperature().getAverageTemperature());
         holder.rootView.setBackgroundColor(color);
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnCityClickedListener.onCityClicked(mWeatherData.get(position), holder.weatherImage, holder.name);
+                mOnCityClickedListener.onCityClicked(mWeatherData.get(position), holder.temperature, holder.name, weatherdata.getTemperature().getAverageTemperature());
             }
         });
 
         holder.name.setText(weatherdata.getName());
+        holder.weatherImage.setImageResource(weatherdata.getTemperature().getAverageTemperature() > 290 ? R.drawable.ic_thumb_up : R.drawable.ic_thumb_down);
 
-        double degrees = mConverter.convert(weatherdata.getTemperature().getAverageTemperature());
-        holder.temperature.setText(mConverter.getString(degrees));
+        holder.temperature.setText(mConverter.convert(weatherdata.getTemperature().getAverageTemperature()));
     }
 
     @Override
@@ -74,22 +75,22 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView weatherImage;
         TextView name;
         TextView temperature;
+        ImageView weatherImage;
         View rootView;
 
         public ViewHolder(View v) {
             super(v);
             rootView = v;
             name = (TextView) v.findViewById(R.id.name);
-            weatherImage = (ImageView) v.findViewById(R.id.weather_image);
             temperature = (TextView) v.findViewById(R.id.temperature);
+            weatherImage = (ImageView) v.findViewById(R.id.weather_image);
         }
     }
 
     public interface OnCityClickedListener {
-        void onCityClicked(WeatherData weatherData, ImageView imageView, TextView cityName);
+        void onCityClicked(WeatherData weatherData, TextView temperatureText, TextView cityName, double temperature);
     }
 
 }

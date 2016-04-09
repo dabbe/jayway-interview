@@ -24,53 +24,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/max_temp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="4dp">
-
-                <TextView
-                    android:id="@+id/max_temp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:text="18 °C"
-                    android:textColor="#890000"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:id="@+id/min_temp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:text="12 °C"
-                    android:textColor="#004cda"
-                    android:textSize="18sp"/>
-            </FrameLayout>
-
-            <ImageView
-                android:id="@+id/imageview"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_margin="8dp"
-                android:src="@drawable/ic_sun"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:padding="8dp"
+            android:text="18 °C"
+            android:textColor="#890000"
+            android:textSize="18sp"/>
 
         <TextView
+            android:id="@+id/min_temp"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:padding="8dp"
             android:text="12 °C"
-            android:textColor="#000"
-            android:textSize="32sp"/>
+            android:textColor="#004cda"
+            android:textSize="18sp"/>
 
-        <TextView android:id="@+id/cloud_percentage"
+        <ImageView
+            android:id="@+id/weather_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical|left"
+            android:layout_margin="8dp"/>
+
+
+        <TextView
+            android:id="@+id/cloud_percentage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
@@ -83,6 +66,8 @@
             android:textColor="#000"
             android:textSize="20sp"/>
     </FrameLayout>
+
+    r
 
     <View
         android:layout_width="match_parent"

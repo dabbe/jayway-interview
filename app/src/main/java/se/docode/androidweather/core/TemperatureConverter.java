@@ -12,11 +12,10 @@ public abstract class TemperatureConverter {
     public TemperatureConverter(Context c){
         mContext = c;
     }
-
-    public abstract double convert(double kelvin);
+    protected abstract double convertValue(double kelvin);
     protected abstract int getStringResource();
 
-    public String getString(double degrees){
-        return mContext.getString(getStringResource(), degrees);
+    public String convert(double kelvin){
+        return mContext.getString(getStringResource(), convertValue(kelvin));
     }
 }

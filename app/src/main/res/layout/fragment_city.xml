@@ -16,6 +16,18 @@
         android:background="#2f8c45">
 
         <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:fontFamily="sans-serif-light"
+            android:padding="8dp"
+            android:text="22 c"
+            android:textColor="#fff"
+            android:textSize="26sp"
+            android:transitionName="@string/degrees_transition"/>
+
+        <TextView
             android:id="@+id/city_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,15 +52,14 @@
             android:layout_height="48dp"
             android:layout_gravity="center"/>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:id="@+id/center_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"/>
-        </ScrollView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:scrollbars="vertical"/>
+
     </ViewFlipper>
 </LinearLayout>

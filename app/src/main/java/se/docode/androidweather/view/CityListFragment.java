@@ -17,14 +17,13 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.widget.ViewFlipper;
 
 import java.util.List;
 
-import se.docode.androidweather.CityAdapter;
+import se.docode.androidweather.adapter.CityAdapter;
 import se.docode.androidweather.R;
 import se.docode.androidweather.core.CelsiusConverter;
 import se.docode.androidweather.core.FahrenheitConverter;
@@ -115,13 +114,16 @@ public class CityListFragment extends Fragment implements CityListView {
 
         mAdapter = new CityAdapter(getActivity(), new CityAdapter.OnCityClickedListener() {
             @Override
-            public void onCityClicked(WeatherData weatherData, ImageView imageView, TextView textView) {
+            public void onCityClicked(WeatherData weatherData, TextView temperatureText, TextView cityName, double temperature) {
                 Intent intent = new Intent(getActivity(), CityActivity.class);
-                intent.putExtra(getString(R.string.city_name), textView.getText().toString());
+                intent.putExtra(getString(R.string.city_name), cityName.getText().toString());
                 intent.putExtra(getString(R.string.city_id), weatherData.getId());
+                intent.putExtra(getString(R.string.temperature), temperature);
+                intent.putExtra(getString(R.string.is_celsius), mCelsiusButton.isChecked());
 
-                Pair<View, String> p1 = Pair.create((View) textView, getString(R.string.textview_transition));
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), p1);
+                Pair<View, String> p1 = Pair.create((View) cityName, getString(R.string.textview_transition));
+                Pair<View, String> p2 = Pair.create((View) temperatureText, getString(R.string.degrees_transition));
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), p1, p2);
                 getActivity().startActivity(intent, options.toBundle());
 
             }

@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Weathr</string>
     <string name="no_results_for">No results for %s. :(</string>
+    <string name="percent_value">%d%%</string>
     <string name="degrees_celsius">%.1f °C</string>
     <string name="degrees_fahrenheit">%.1f °F</string>
-    <string name="imageview_transition">img_transition</string>
     <string name="textview_transition">text_transition</string>
+    <string name="degrees_transition">degrees_transition</string>
     <string name="city_name">city_name</string>
     <string name="in_city">in %s</string>
     <string name="city_id">city_id</string>
+    <string name="is_celsius">is_celsius</string>
+    <string name="temperature">temperature</string>
 </resources>

@@ -14,7 +14,7 @@ public class FahrenheitConverter extends TemperatureConverter {
     }
 
     @Override
-    public double convert(double kelvin) {
+    public double convertValue(double kelvin) {
         return kelvin * 9 / 5f - 459.67;
     }
 
