@@ -1,8 +1,10 @@
 package se.docode.androidweather.network;
 
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import se.docode.androidweather.model.SearchResult;
 import se.docode.androidweather.model.WeatherForecast;
 
@@ -11,9 +13,9 @@ import se.docode.androidweather.model.WeatherForecast;
  */
 public interface WeatherApi {
 
-    @GET("find?type=like&cnt=100&APPID=89794ef3be7110927c49db761c39bf1c")
-    Call<SearchResult> searchByFreeText(@Query("q") String query);
+    @GET("find?type=like")
+    Call<SearchResult> searchByFreeText(@QueryMap Map<String, String> queryMap);
 
-    @GET("forecast/daily?cnt=3&APPID=89794ef3be7110927c49db761c39bf1c")
-    Call<WeatherForecast> searchById(@Query("id") int id);
+    @GET("forecast/daily")
+    Call<WeatherForecast> searchById(@QueryMap Map<String, String> queryMap);
 }

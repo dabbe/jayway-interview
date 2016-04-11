@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".view.CityListActivity">
+    tools:context=".view.DetailActivity">
 
-    <include layout="@layout/content_citylist"/>
+    <include layout="@layout/content_details"/>
 
 </LinearLayout>

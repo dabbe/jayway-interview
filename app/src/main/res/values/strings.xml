@@ -11,4 +11,5 @@
     <string name="city_id">city_id</string>
     <string name="is_celsius">is_celsius</string>
     <string name="temperature">temperature</string>
+    <string name="query_too_short">Your search query is too short!</string>
 </resources>

@@ -2,17 +2,17 @@ package se.docode.androidweather.presenter;
 
 import se.docode.androidweather.model.WeatherForecast;
 import se.docode.androidweather.network.OnForecastFetchedCallback;
-import se.docode.androidweather.view.CityView;
+import se.docode.androidweather.view.DetailView;
 
 /**
  * Created by Daniel on 2016-04-07.
  */
-public class CityPresenterImpl implements CityPresenter {
+public class DetailPresenterImpl implements DetailPresenter {
 
     private final NetworkHandler mNetworkHandler;
-    private final CityView mView;
+    private final DetailView mView;
 
-    public CityPresenterImpl(CityView view) {
+    public DetailPresenterImpl(DetailView view) {
         mNetworkHandler = new NetworkHandler();
         mView = view;
     }

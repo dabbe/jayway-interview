@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.CityListActivity"
-    tools:showIn="@layout/activity_citylist">
+    tools:context=".view.OverviewActivity"
+    tools:showIn="@layout/activity_overview">
 
     <include layout="@layout/top_layout"/>
 

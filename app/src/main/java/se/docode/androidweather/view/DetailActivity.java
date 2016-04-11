@@ -8,13 +8,13 @@ import se.docode.androidweather.R;
 /**
  * Created by Daniel on 2016-04-06.
  */
-public class CityActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity {
     private boolean finished = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_city);
+        setContentView(R.layout.activity_details);
 
     }
 

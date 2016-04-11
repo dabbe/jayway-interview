@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,23 +16,20 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.ToggleButton;
-import android.widget.ViewFlipper;
 
 import java.util.List;
 
-import se.docode.androidweather.adapter.CityAdapter;
 import se.docode.androidweather.R;
-import se.docode.androidweather.core.CelsiusConverter;
-import se.docode.androidweather.core.FahrenheitConverter;
+import se.docode.androidweather.adapter.DetailAdapter;
+import se.docode.androidweather.core.TemperatureConverter;
 import se.docode.androidweather.model.WeatherData;
-import se.docode.androidweather.presenter.CityListPresenter;
-import se.docode.androidweather.presenter.CityListPresenterImpl;
+import se.docode.androidweather.presenter.OverviewPresenter;
+import se.docode.androidweather.presenter.OverviewPresenterImpl;
 
 /**
  * Created by Daniel on 2016-04-06.
  */
-public class CityListFragment extends Fragment implements CityListView {
+public class OverviewFragment extends WeatherFragment implements OverviewView {
 
     /**
      * Constants
@@ -49,60 +44,31 @@ public class CityListFragment extends Fragment implements CityListView {
      */
     private EditText mSearchInput;
     private Button mSearchButton;
-    private RecyclerView mRecyclerView;
     private TextView mEmptyView;
-
-    private ToggleButton mFahrenheitButton;
-    private ToggleButton mCelsiusButton;
 
     /**
      * Components
      */
-    private final CityListPresenter mCityListPresenter;
-    private CityAdapter mAdapter;
-    private ViewFlipper mViewFlipper;
+    private final OverviewPresenter mOverviewPresenter;
+    private DetailAdapter mAdapter;
 
-    public CityListFragment() {
-        mCityListPresenter = new CityListPresenterImpl(this);
+    public OverviewFragment() {
+        mOverviewPresenter = new OverviewPresenterImpl(this);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_citylist, container, false);
+        return inflater.inflate(R.layout.fragment_overview, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        mSearchInput = (EditText) view.findViewById(R.id.search_input);
-        mSearchButton = (Button) view.findViewById(R.id.search_button);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        mViewFlipper = (ViewFlipper) view.findViewById(R.id.viewflipper);
-        mEmptyView = (TextView) view.findViewById(R.id.emptyview);
-        mFahrenheitButton = (ToggleButton) view.findViewById(R.id.fahrenheit);
-        mCelsiusButton = (ToggleButton) view.findViewById(R.id.celsius);
+        super.onViewCreated(view, savedInstanceState);
+        inflateViews(view);
+
         mCelsiusButton.setChecked(true);
-
         mViewFlipper.setDisplayedChild(VIEWFLIPPER_SEARCH);
-
-        mFahrenheitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAdapter.setConverter(new FahrenheitConverter(getActivity()));
-                mFahrenheitButton.setChecked(true);
-                mCelsiusButton.setChecked(false);
-            }
-        });
-
-        mCelsiusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAdapter.setConverter(new CelsiusConverter(getActivity()));
-                mCelsiusButton.setChecked(true);
-                mFahrenheitButton.setChecked(false);
-            }
-        });
-
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,10 +78,10 @@ public class CityListFragment extends Fragment implements CityListView {
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-        mAdapter = new CityAdapter(getActivity(), new CityAdapter.OnCityClickedListener() {
+        mAdapter = new DetailAdapter(getActivity(), new DetailAdapter.OnCityClickedListener() {
             @Override
             public void onCityClicked(WeatherData weatherData, TextView temperatureText, TextView cityName, double temperature) {
-                Intent intent = new Intent(getActivity(), CityActivity.class);
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
                 intent.putExtra(getString(R.string.city_name), cityName.getText().toString());
                 intent.putExtra(getString(R.string.city_id), weatherData.getId());
                 intent.putExtra(getString(R.string.temperature), temperature);
@@ -143,15 +109,19 @@ public class CityListFragment extends Fragment implements CityListView {
         });
     }
 
-    private void performSearch() {
-        mViewFlipper.setDisplayedChild(VIEWFLIPPER_LOADING);
-        mCityListPresenter.search(mSearchInput.getText().toString());
+    private void inflateViews(View view){
+        mSearchInput = (EditText) view.findViewById(R.id.search_input);
+        mSearchButton = (Button) view.findViewById(R.id.search_button);
+        mEmptyView = (TextView) view.findViewById(R.id.emptyview);
+    }
 
-        View view = getActivity().getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+    @Override
+    protected void changeConverter(TemperatureConverter converter) {
+        mAdapter.setConverter(converter);
+    }
+
+    private void performSearch() {
+        mOverviewPresenter.validateQuery(mSearchInput.getText().toString());
     }
 
     @Override
@@ -164,4 +134,22 @@ public class CityListFragment extends Fragment implements CityListView {
             mViewFlipper.setDisplayedChild(VIEWFLIPPER_RECYCLER);
         }
     }
+
+    @Override
+    public void showTooShortQuery() {
+        toast(R.string.query_too_short);
+    }
+
+    @Override
+    public void loadSearch() {
+        mViewFlipper.setDisplayedChild(VIEWFLIPPER_LOADING);
+
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+
+    }
+
 }

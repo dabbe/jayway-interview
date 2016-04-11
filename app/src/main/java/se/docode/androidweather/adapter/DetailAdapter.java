@@ -13,6 +13,7 @@ import java.util.List;
 
 import se.docode.androidweather.R;
 import se.docode.androidweather.core.CelsiusConverter;
+import se.docode.androidweather.core.Constants;
 import se.docode.androidweather.core.TemperatureConverter;
 import se.docode.androidweather.core.WeatherColorer;
 import se.docode.androidweather.model.WeatherData;
@@ -20,17 +21,15 @@ import se.docode.androidweather.model.WeatherData;
 /**
  * Created by Daniel on 2016-04-06.
  */
-public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
+public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder> {
 
-    private final Context mContext;
     private List<WeatherData> mWeatherData;
     private TemperatureConverter mConverter;
     private OnCityClickedListener mOnCityClickedListener;
 
-    public CityAdapter(Context c, OnCityClickedListener listener) {
+    public DetailAdapter(Context c, OnCityClickedListener listener) {
         mWeatherData = new ArrayList<>();
-        mContext = c;
-        mConverter = new CelsiusConverter(mContext);
+        mConverter = new CelsiusConverter(c);
         mOnCityClickedListener = listener;
     }
 
@@ -41,7 +40,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.city_information_square, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.overview_square, parent, false);
         return new ViewHolder(v);
     }
 
@@ -59,7 +58,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         });
 
         holder.name.setText(weatherdata.getName());
-        holder.weatherImage.setImageResource(weatherdata.getTemperature().getAverageTemperature() > 290 ? R.drawable.ic_thumb_up : R.drawable.ic_thumb_down);
+        holder.weatherImage.setImageResource(weatherdata.getTemperature().getAverageTemperature() > Constants.TEMPERATURE_THRESHOLD ? R.drawable.ic_thumb_up : R.drawable.ic_thumb_down);
 
         holder.temperature.setText(mConverter.convert(weatherdata.getTemperature().getAverageTemperature()));
     }

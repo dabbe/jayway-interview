@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.docode.androidweather.R;
+import se.docode.androidweather.core.Constants;
 import se.docode.androidweather.core.TemperatureConverter;
 import se.docode.androidweather.model.ForecastDay;
 import se.docode.androidweather.model.ForecastTemperature;
@@ -21,7 +22,6 @@ import se.docode.androidweather.model.ForecastTemperature;
  */
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHolder> {
 
-    private static final String[] DEFINED_DAYS = {"Today", "Tomorrow", "The Day After Tomorrow"};
     private final Context mContext;
     private List<ForecastDay> mForecastDays;
     private TemperatureConverter mConverter;
@@ -48,7 +48,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.weather_data_row, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.details_row, parent, false);
         return new ViewHolder(v);
     }
 
@@ -57,11 +57,11 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
         ForecastDay day = mForecastDays.get(position);
         ForecastTemperature temp = day.getTemperature();
 
-        holder.title.setText(DEFINED_DAYS[position]);
+        holder.title.setText(Constants.DAYS[position]);
         holder.maxTemp.setText(mConverter.convert(temp.getMaximumTemperature()));
         holder.minTemp.setText(mConverter.convert(temp.getMinimumTemperature()));
         holder.cloudPercentage.setText(mContext.getString(R.string.percent_value, day.getCloudPercentage()));
-        holder.weatherImage.setImageResource(temp.getMaximumTemperature() > 290 ? R.drawable.ic_thumb_up : R.drawable.ic_thumb_down);
+        holder.weatherImage.setImageResource(temp.getMaximumTemperature() > Constants.TEMPERATURE_THRESHOLD ? R.drawable.ic_thumb_up : R.drawable.ic_thumb_down);
     }
 
     @Override

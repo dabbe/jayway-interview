@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import se.docode.androidweather.R;
 
-public class CityListActivity extends AppCompatActivity {
+public class OverviewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_citylist);
+        setContentView(R.layout.activity_overview);
 
     }
 }
